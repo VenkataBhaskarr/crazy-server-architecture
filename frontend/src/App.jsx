@@ -5,25 +5,31 @@ import {useState} from "react";
 function App() {
     const [response, setResponse] = useState('Response from server...')
     const handleClickforCPP = () => {
-        axios.get('http://localhost:8080/cpp').then((res) => {
+        axios.get('http://localhost:8080/time').then((res) => {
             setResponse(res)
         })
         console.log("CPP")
     }
     const handleClickforRUST = () => {
-        axios.get('http://localhost:8080/cpp').then((res) => {
+        axios.get('http://localhost:8081/time').then((res) => {
             setResponse(res)
         })
         console.log("RUST")
     }
-    const handleClickforGOLANG = () => {
-        axios.get('http://localhost:8080/cpp').then((res) => {
-            setResponse(res)
+    const handleClickforGOLANG = async () => {
+        let startTime = new Date().getTime()
+        let endTime = 0;
+        await axios.get('http://localhost:8082/time').then((res) => {
+             // console.log(res)
+             setResponse(res.data)
+             endTime = new Date().getTime()
         })
-        console.log("GOLANG")
+        startTime = Number(startTime)
+        endTime = Number(endTime)
+        console.log(endTime - startTime)
     }
     const handleClickforPYTHON = () => {
-        axios.get('http://localhost:8080/cpp').then((res) => {
+        axios.get('http://localhost:8083/time').then((res) => {
             setResponse(res)
         })
         console.log("PYTHON")
