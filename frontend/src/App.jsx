@@ -4,11 +4,17 @@ import {useState} from "react";
 
 function App() {
     const [response, setResponse] = useState('Response from server...')
-    const handleClickforCPP = () => {
-        axios.get('http://localhost:8080/time').then((res) => {
-            setResponse(res)
+    const handleClickforCPP = async () => {
+        let startTimeForCPP = new Date().getTime()
+        let endTimeForCPP = 0;
+        await axios.get('http://localhost:8080/time').then((res) => {
+            // console.log(res)
+            setResponse(res.data)
+            endTimeForCPP = new Date().getTime()
         })
-        console.log("CPP")
+        startTimeForCPP = Number(startTimeForCPP)
+        endTimeForCPP = Number(endTimeForCPP)
+        console.log(endTimeForCPP - startTimeForCPP)
     }
     const handleClickforRUST = () => {
         axios.get('http://localhost:8081/time').then((res) => {
