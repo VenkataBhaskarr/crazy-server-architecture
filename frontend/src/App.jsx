@@ -35,10 +35,15 @@ function App() {
         console.log(endTime - startTime)
     }
     const handleClickforPYTHON = () => {
-        axios.get('http://localhost:8083/time').then((res) => {
-            setResponse(res)
+        let startTimeForPython = new Date().getTime()
+        let endTimeForPython = 0;
+        axios.get('http://localhost:8084/time').then((res) => {
+            setResponse(res.data)
+            endTimeForPython = new Date().getTime()
         })
-        console.log("PYTHON")
+        startTimeForPython = Number(startTimeForPython)
+        endTimeForPython = Number(endTimeForPython)
+        console.log(endTimeForPython - startTimeForPython)
     }
   return (
     <div className="App">

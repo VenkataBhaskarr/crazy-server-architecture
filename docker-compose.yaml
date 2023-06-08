@@ -1,0 +1,25 @@
+version : "3.0"
+services: 
+    frontend:
+      build: ./frontend
+      container_name : my-frontend
+      ports:
+        - "5173:5173"
+    
+    cpp-server:
+      build: ./cpp-server
+      container_name : cpp-server
+      ports:
+        - "8084:8084"
+    
+    golang-server:
+      build: ./golang-server
+      container_name : golang-server
+      ports:
+        - "8082:8082"
+      
+    python-server:
+      build: ./python-server
+      container_name: python-server
+      ports:
+        - "5000:8083"
